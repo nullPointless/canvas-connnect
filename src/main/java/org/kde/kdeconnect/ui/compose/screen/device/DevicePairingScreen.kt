@@ -1,21 +1,29 @@
 /*
  * SPDX-FileCopyrightText: 2026 Saul Cintero Chocarro <scintero@gmail.com>
+ * SPDX-FileCopyrightText: 2026 nullPointless
  *
  * SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
  */
 
 package org.kde.kdeconnect.ui.compose.screen.device
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -26,9 +34,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.kde.kdeconnect.PairingHandler
 import org.kde.kdeconnect.ui.compose.KdeTheme
-import org.kde.kdeconnect.ui.compose.components.KdeBodyMediumText
+import org.kde.kdeconnect.ui.compose.components.IconBadge
 import org.kde.kdeconnect.ui.compose.components.KdeThemePreviews
-import org.kde.kdeconnect.ui.compose.components.KdeTitleMediumText
+import org.kde.kdeconnect.ui.compose.CanvasAccents
 import org.kde.kdeconnect_tp.R
 
 @Composable
@@ -59,45 +67,49 @@ private fun DevicePairingScreenContent(
     onAcceptPairing: () -> Unit,
     onRejectPairing: () -> Unit
 ) {
+    val bottomPadding = org.kde.kdeconnect.extensions.safeDrawingBottomPadding().calculateBottomPadding()
+
     Column(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(all = 16.dp)
+            .padding(start = 16.dp, end = 16.dp, top = 16.dp, bottom = 24.dp + bottomPadding),
+        verticalArrangement = Arrangement.Center,
     ) {
         val finalPairMessage = pairMessage ?: when (pairStatus) {
             PairingHandler.PairState.NotPaired -> stringResource(id = R.string.device_not_paired)
             else -> stringResource(id = R.string.pair_requested)
         }
 
-        KdeTitleMediumText(
+        // Hero: key icon badge
+        IconBadge(
+            iconRes = R.drawable.ic_key,
+            tint = CanvasAccents.blue,
+            size = 56.dp,
+            modifier = Modifier.padding(bottom = 20.dp),
+        )
+
+        Text(
             text = finalPairMessage,
+            style = MaterialTheme.typography.titleLarge,
+            color = MaterialTheme.colorScheme.onSurface,
             modifier = Modifier.padding(bottom = 8.dp)
         )
 
-        KdeBodyMediumText(
+        Text(
             text = stringResource(id = R.string.pairing_explanation),
-            modifier = Modifier.padding(bottom = 12.dp)
+            style = MaterialTheme.typography.bodyMedium,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier.padding(bottom = 20.dp)
         )
 
         if (pairStatus != PairingHandler.PairState.NotPaired) {
-            Row(
-                verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.padding(bottom = 8.dp)
-            ) {
-                Icon(
-                    painter = painterResource(id = R.drawable.ic_key),
-                    contentDescription = null,
-                    modifier = Modifier.padding(end = 5.dp),
-                    tint = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-                KdeTitleMediumText(text = verificationKey)
-            }
+            VerificationKeyCard(verificationKey)
         }
 
         if (pairStatus == PairingHandler.PairState.Requested) {
             CircularProgressIndicator(
                 modifier = Modifier
-                    .padding(vertical = 8.dp)
+                    .padding(vertical = 24.dp)
                     .align(Alignment.CenterHorizontally)
             )
         }
@@ -105,9 +117,16 @@ private fun DevicePairingScreenContent(
         if (pairStatus == PairingHandler.PairState.NotPaired) {
             Button(
                 onClick = onRequestPairing,
-                modifier = Modifier.fillMaxWidth()
+                shape = RoundedCornerShape(14.dp),
+                colors = ButtonDefaults.buttonColors(),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 8.dp)
             ) {
-                Text(text = stringResource(id = R.string.request_pairing))
+                Text(
+                    text = stringResource(id = R.string.request_pairing),
+                    style = MaterialTheme.typography.labelLarge,
+                )
             }
         }
 
@@ -115,22 +134,70 @@ private fun DevicePairingScreenContent(
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(vertical = 4.dp)
+                    .padding(top = 20.dp)
             ) {
                 Button(
                     onClick = onAcceptPairing,
+                    shape = RoundedCornerShape(14.dp),
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = stringResource(id = R.string.pairing_accept))
+                    Text(
+                        text = stringResource(id = R.string.pairing_accept),
+                        style = MaterialTheme.typography.labelLarge,
+                    )
                 }
-                Spacer(modifier = Modifier.width(8.dp))
-                Button(
+                Spacer(modifier = Modifier.width(12.dp))
+                OutlinedButton(
                     onClick = onRejectPairing,
+                    shape = RoundedCornerShape(14.dp),
                     modifier = Modifier.weight(1f)
                 ) {
-                    Text(text = stringResource(id = R.string.pairing_reject))
+                    Text(
+                        text = stringResource(id = R.string.pairing_reject),
+                        style = MaterialTheme.typography.labelLarge,
+                    )
                 }
             }
+        }
+    }
+}
+
+/** The verification key, displayed large and scannable like a pairing code. */
+@Composable
+private fun VerificationKeyCard(verificationKey: String) {
+    Surface(
+        shape = RoundedCornerShape(16.dp),
+        color = MaterialTheme.colorScheme.surfaceContainerLow,
+        border = androidx.compose.foundation.BorderStroke(
+            width = 1.dp,
+            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.6f),
+        ),
+        modifier = Modifier.fillMaxWidth(),
+    ) {
+        Column(
+            modifier = Modifier.padding(horizontal = 16.dp, vertical = 14.dp),
+        ) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    painter = painterResource(id = R.drawable.ic_key),
+                    contentDescription = null,
+                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                    modifier = Modifier.size(16.dp),
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(
+                    text = stringResource(id = R.string.pairing_verification_key_label),
+                    style = MaterialTheme.typography.bodySmall,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+            Spacer(modifier = Modifier.height(10.dp))
+            Text(
+                text = verificationKey,
+                style = MaterialTheme.typography.displaySmall,
+                color = MaterialTheme.colorScheme.primary,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
+            )
         }
     }
 }
