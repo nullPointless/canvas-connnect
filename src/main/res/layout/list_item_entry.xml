@@ -13,10 +13,12 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     android:background="?android:attr/selectableItemBackground"
     android:baselineAligned="false"
     android:gravity="center_vertical"
-    android:minHeight="?android:attr/listPreferredItemHeight"
+    android:minHeight="64dp"
     android:orientation="vertical"
-    android:paddingEnd="?android:attr/scrollbarSize"
-    android:paddingStart="12dip"
+    android:paddingEnd="16dip"
+    android:paddingStart="16dip"
+    android:paddingTop="10dip"
+    android:paddingBottom="10dip"
     android:id="@+id/list_item_entry">
 
     <TextView
@@ -28,7 +30,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:singleLine="true"
         android:text=""
         tools:text="Item entry"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?attr/textAppearanceBodyLarge" />
 
     <TextView
         android:id="@+id/list_item_entry_summary"
@@ -36,8 +38,8 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:layout_height="wrap_content"
         android:singleLine="true"
         android:text=""
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:textColor="@android:color/darker_gray"
+        android:textAppearance="?attr/textAppearanceBodySmall"
+        android:textColor="?attr/colorOnSurfaceVariant"
         android:visibility="gone" />
 
 </LinearLayout>

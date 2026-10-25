@@ -21,7 +21,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/no_players_connected"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?attr/textAppearanceBodyLarge" />
 
     <Spinner
         android:id="@+id/player_spinner"
@@ -37,10 +37,11 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         android:ellipsize="marquee"
         android:gravity="center"
         android:marqueeRepeatLimit="marquee_forever"
-        android:padding="8dip"
+        android:paddingHorizontal="12dip"
+        android:paddingVertical="10dip"
         android:scrollHorizontally="true"
         android:singleLine="true"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?attr/textAppearanceTitleMedium" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -161,7 +162,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:padding="8dip"
             android:singleLine="true"
             android:text="00:00"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?attr/textAppearanceBodyMedium" />
 
         <SeekBar
             android:id="@+id/positionSeek"
@@ -179,7 +180,7 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
             android:padding="8dip"
             android:singleLine="true"
             android:text="00:00"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?attr/textAppearanceBodyMedium" />
     </LinearLayout>
 
     <LinearLayout

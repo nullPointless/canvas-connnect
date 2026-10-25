@@ -89,12 +89,12 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
     <style name="KdeConnectButton.IconButton" parent="Widget.Material3.Button.IconButton.Filled">
         <item name="iconGravity">textStart</item>
-        <item name="cornerRadius">24dp</item>
+        <item name="cornerRadius">28dp</item>
     </style>
 
     <style name="KdeConnectButton.IconButton.Secondary" parent="Widget.Material3.Button.IconButton.Filled.Tonal">
         <item name="iconGravity">textStart</item>
-        <item name="cornerRadius">12dp</item>
+        <item name="cornerRadius">28dp</item>
     </style>
 
     <style name="ActionModeStyle" parent="Widget.AppCompat.ActionMode">
