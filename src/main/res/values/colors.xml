@@ -1,6 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <!-- Canvas Design light palette (matches Compose CanvasLightColors) -->
+    <color name="canvas_primary">#FF007AFF</color>
+    <color name="canvas_on_primary">#FFFFFFFF</color>
+    <color name="canvas_primary_container">#FFD6EAFF</color>
+    <color name="canvas_on_primary_container">#FF002B52</color>
+    <color name="canvas_secondary">#FF586573</color>
+    <color name="canvas_on_secondary">#FFFFFFFF</color>
+    <color name="canvas_secondary_container">#FFE3EAF3</color>
+    <color name="canvas_on_secondary_container">#FF161F28</color>
+    <color name="canvas_tertiary">#FFD26A00</color>
+    <color name="canvas_on_tertiary">#FFFFFFFF</color>
+    <color name="canvas_tertiary_container">#FFFFE4C7</color>
+    <color name="canvas_on_tertiary_container">#FF3B2100</color>
+    <color name="canvas_error">#FFD32F2F</color>
+    <color name="canvas_on_error">#FFFFFFFF</color>
+    <color name="canvas_error_container">#FFFDE0DD</color>
+    <color name="canvas_on_error_container">#FF410002</color>
+    <color name="canvas_background">#FFF2F2F7</color>
+    <color name="canvas_on_background">#FF1B1B1D</color>
+    <color name="canvas_surface">#FFFFFFFF</color>
+    <color name="canvas_on_surface">#FF1B1B1D</color>
+    <color name="canvas_surface_variant">#FFE9E9EE</color>
+    <color name="canvas_on_surface_variant">#FF55606E</color>
+    <color name="canvas_outline">#FFAAB2BC</color>
+    <color name="canvas_outline_variant">#FFE3E5EA</color>
+    <color name="canvas_surface_container_lowest">#FFFFFFFF</color>
+    <color name="canvas_surface_container_low">#FFFFFFFF</color>
+    <color name="canvas_surface_container">#FFF7F7FA</color>
+    <color name="canvas_surface_container_high">#FFF0F0F4</color>
+    <color name="canvas_surface_container_highest">#FFEAEAEF</color>
+
     <color name="launcher_background">#3daee9</color>
 
     <!-- Whenever possible, don't hardcode colors here and rely on the default ones (eg: from the system or user theme) -->

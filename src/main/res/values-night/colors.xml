@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Canvas Design dark palette (matches Compose CanvasDarkColors) -->
+    <color name="canvas_primary">#FF0A84FF</color>
+    <color name="canvas_on_primary">#FFFFFFFF</color>
+    <color name="canvas_primary_container">#FF0F4E94</color>
+    <color name="canvas_on_primary_container">#FFCCE4FF</color>
+    <color name="canvas_secondary">#FFB3BECB</color>
+    <color name="canvas_on_secondary">#FF1B2530</color>
+    <color name="canvas_secondary_container">#FF313D4A</color>
+    <color name="canvas_on_secondary_container">#FFDAE3EE</color>
+    <color name="canvas_tertiary">#FFFFA24A</color>
+    <color name="canvas_on_tertiary">#FF3B2600</color>
+    <color name="canvas_tertiary_container">#FF5B3B00</color>
+    <color name="canvas_on_tertiary_container">#FFFFDCBB</color>
+    <color name="canvas_error">#FFFF6B60</color>
+    <color name="canvas_on_error">#FF3A0001</color>
+    <color name="canvas_error_container">#FF93000A</color>
+    <color name="canvas_on_error_container">#FFFFDAD5</color>
+    <color name="canvas_background">#FF000000</color>
+    <color name="canvas_on_background">#FFF2F2F7</color>
+    <color name="canvas_surface">#FF1C1C1E</color>
+    <color name="canvas_on_surface">#FFF2F2F7</color>
+    <color name="canvas_surface_variant">#FF2C2C30</color>
+    <color name="canvas_on_surface_variant">#FFA6ADB8</color>
+    <color name="canvas_outline">#FF494F57</color>
+    <color name="canvas_outline_variant">#FF303035</color>
+    <color name="canvas_surface_container_lowest">#FF000000</color>
+    <color name="canvas_surface_container_low">#FF1C1C1E</color>
+    <color name="canvas_surface_container">#FF232327</color>
+    <color name="canvas_surface_container_high">#FF2A2A2F</color>
+    <color name="canvas_surface_container_highest">#FF313136</color>
+
+</resources>

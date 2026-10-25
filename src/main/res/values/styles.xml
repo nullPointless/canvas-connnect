@@ -6,8 +6,38 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
 
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- NoActionBar because we use a Toolbar widget as ActionBar -->
-    <style name="KdeConnectThemeBase" parent="Theme.Material3.DynamicColors.DayNight.NoActionBar">
-        <!-- The main color attributes -->
+    <style name="KdeConnectThemeBase" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Canvas Design brand palette (kept consistent with the Compose theme) -->
+        <item name="colorPrimary">@color/canvas_primary</item>
+        <item name="colorOnPrimary">@color/canvas_on_primary</item>
+        <item name="colorPrimaryContainer">@color/canvas_primary_container</item>
+        <item name="colorOnPrimaryContainer">@color/canvas_on_primary_container</item>
+        <item name="colorSecondary">@color/canvas_secondary</item>
+        <item name="colorOnSecondary">@color/canvas_on_secondary</item>
+        <item name="colorSecondaryContainer">@color/canvas_secondary_container</item>
+        <item name="colorOnSecondaryContainer">@color/canvas_on_secondary_container</item>
+        <item name="colorTertiary">@color/canvas_tertiary</item>
+        <item name="colorOnTertiary">@color/canvas_on_tertiary</item>
+        <item name="colorTertiaryContainer">@color/canvas_tertiary_container</item>
+        <item name="colorOnTertiaryContainer">@color/canvas_on_tertiary_container</item>
+        <item name="colorError">@color/canvas_error</item>
+        <item name="colorOnError">@color/canvas_on_error</item>
+        <item name="colorErrorContainer">@color/canvas_error_container</item>
+        <item name="colorOnErrorContainer">@color/canvas_on_error_container</item>
+        <item name="android:colorBackground">@color/canvas_background</item>
+        <item name="colorOnBackground">@color/canvas_on_background</item>
+        <item name="colorSurface">@color/canvas_surface</item>
+        <item name="colorOnSurface">@color/canvas_on_surface</item>
+        <item name="colorSurfaceVariant">@color/canvas_surface_variant</item>
+        <item name="colorOnSurfaceVariant">@color/canvas_on_surface_variant</item>
+        <item name="colorOutline">@color/canvas_outline</item>
+        <item name="colorOutlineVariant">@color/canvas_outline_variant</item>
+        <item name="colorSurfaceContainerLowest">@color/canvas_surface_container_lowest</item>
+        <item name="colorSurfaceContainerLow">@color/canvas_surface_container_low</item>
+        <item name="colorSurfaceContainer">@color/canvas_surface_container</item>
+        <item name="colorSurfaceContainerHigh">@color/canvas_surface_container_high</item>
+        <item name="colorSurfaceContainerHighest">@color/canvas_surface_container_highest</item>
+
         <!-- Drawable definitions and overrides -->
 
         <item name="materialCardViewStyle">@style/KdeConnectCardStyle</item>
@@ -36,9 +66,23 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
         <item name="dialogCornerRadius" tools:ignore="PrivateResource">@dimen/m3_alert_dialog_corner_size</item>
     </style>
 
-    <style name="KdeConnectCardStyle" parent="@style/Widget.Material3.CardView.Elevated"/>
+    <style name="KdeConnectCardStyle" parent="@style/Widget.Material3.CardView.Outlined">
+        <item name="cardElevation">0dp</item>
+        <item name="strokeWidth">1dp</item>
+        <item name="strokeColor">@color/canvas_outline_variant</item>
+        <item name="shapeAppearanceOverlay">@style/KdeConnectCardShape</item>
+    </style>
 
-    <style name="KdeConnectCardStyle.Filled" parent="@style/Widget.Material3.CardView.Filled"/>
+    <style name="KdeConnectCardStyle.Filled">
+        <item name="cardBackgroundColor">?attr/colorSurfaceContainerLow</item>
+        <item name="cardElevation">0dp</item>
+        <item name="shapeAppearanceOverlay">@style/KdeConnectCardShape</item>
+    </style>
+
+    <style name="KdeConnectCardShape" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">20dp</item>
+    </style>
 
     <style name="MainNavigationView">
     </style>
