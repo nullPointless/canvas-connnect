@@ -37,8 +37,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.kde.kdeconnect.extensions.safeDrawingBottomPadding
 import org.kde.kdeconnect.ui.compose.KdeTheme
-import org.kde.kdeconnect.ui.compose.components.KdeCard
+import org.kde.kdeconnect.ui.compose.canvasStatusColors
+import org.kde.kdeconnect.ui.compose.components.DeviceRow
 import org.kde.kdeconnect.ui.compose.components.KdeThemePreviews
+import org.kde.kdeconnect.ui.compose.components.ListGroup
+import org.kde.kdeconnect.ui.compose.components.ListGroupDivider
 import org.kde.kdeconnect.ui.compose.components.SectionHeader
 import org.kde.kdeconnect.ui.compose.model.device.DeviceUiModel
 import org.kde.kdeconnect_tp.R
@@ -85,71 +88,32 @@ private fun ShareScreenContent(
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(
-                    top = 4.dp,
-                    start = 8.dp,
-                    end = 8.dp
-                ),
+                .padding(top = 4.dp),
             contentPadding = safeDrawingBottomPadding(),
             state = state
         ) {
             item {
                 SectionHeader(title = sectionTitle)
             }
-            items(
-                items = devices,
-                key = { device -> device.id }
-            ) { device ->
-                KdeCard(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(top = 8.dp),
-                    content = { ShareScreenCardContent(device = device) },
-                    onClick = { onDeviceClick(device.id) }
-                )
-            }
-        }
-    }
-}
-
-@Composable
-private fun ShareScreenCardContent(device: DeviceUiModel) {
-    Row(
-        modifier = Modifier
-            .wrapContentSize()
-            .defaultMinSize(minHeight = 48.dp)
-            .padding(all = 32.dp),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        if (device.icon > 0) {
-            Image(
-                imageVector = ImageVector.vectorResource(id = device.icon),
-                contentDescription = null,
-                colorFilter = ColorFilter.tint(color = MaterialTheme.colorScheme.onSurfaceVariant),
-                modifier = Modifier
-                    .padding(start = 12.dp)
-                    .size(32.dp)
-                    .wrapContentHeight()
-            )
-        }
-        Column(
-            modifier = Modifier
-                .padding(start = 8.dp)
-        ) {
-            Text(
-                text = device.name,
-                style = MaterialTheme.typography.bodyLarge,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                fontSize = 18.sp
-            )
-            if (!device.isReachable) {
-                Text(
-                    text = stringResource(id = R.string.runcommand_notreachable),
-                    style = MaterialTheme.typography.bodySmall,
-                    color = Color(0xFFCC2222),
-                    fontSize = 14.sp,
-                    maxLines = 1
-                )
+            item {
+                val status = canvasStatusColors()
+                ListGroup(modifier = Modifier.padding(horizontal = 16.dp)) {
+                    devices.forEachIndexed { index, device ->
+                        DeviceRow(
+                            device = device,
+                            onClick = { onDeviceClick(device.id) },
+                            statusText = if (!device.isReachable) {
+                                stringResource(id = R.string.runcommand_notreachable)
+                            } else {
+                                null
+                            },
+                            statusColor = status.error,
+                        )
+                        if (index < devices.lastIndex) {
+                            ListGroupDivider()
+                        }
+                    }
+                }
             }
         }
     }

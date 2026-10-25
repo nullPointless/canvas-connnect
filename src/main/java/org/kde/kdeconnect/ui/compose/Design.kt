@@ -94,6 +94,11 @@ val CanvasStatusDark = CanvasStatusColors(
     neutral = Color(0xFFA6ADB8),
 )
 
+/** Theme-aware status colors for the current light/dark mode. */
+@androidx.compose.runtime.Composable
+fun canvasStatusColors(): CanvasStatusColors =
+    if (androidx.compose.foundation.isSystemInDarkTheme()) CanvasStatusDark else CanvasStatusLight
+
 // ---------------------------------------------------------------------------
 // Color schemes
 // ---------------------------------------------------------------------------

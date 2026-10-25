@@ -59,6 +59,9 @@ SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted
     <string name="pref_plugin_inputdevicesreceiver">Share input devices</string>
     <string name="pref_plugin_inputdevicesreceiver_desc">Share mouse and keyboard with the remote device</string>
     <string name="device_list_empty">No devices</string>
+    <string name="device_status_connected">Connected</string>
+    <string name="device_status_not_paired">Tap to pair</string>
+    <string name="device_status_offline">Offline</string>
     <string name="ok">OK</string>
     <string name="sad_ok">OK :(</string>
     <string name="cancel">Cancel</string>
